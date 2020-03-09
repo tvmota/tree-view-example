@@ -1,17 +1,51 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <TreeView />
+    <hr>
+    <Tree :treeData="tree" :showCheckbox="true"/>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue';
+import TreeView from './components/TreeView.vue';
+import Tree from './components/tree/Tree.vue';
 
 export default {
   name: 'App',
+  data() {
+    return {
+      tree: [
+        {
+          label: 'A cool sub-folder 1',
+          children: [
+            { label: 'A cool sub-sub-folder 1' },
+            { label: 'A cool sub-sub-folder 2' },
+          ],
+        },
+        { label: 'This one is not that cool' },
+        {
+          label: 'This one is not that cool',
+          children: [
+            {
+              label: 'A cool sub-sub-folder 1',
+              children: [
+                {
+                  label: 'This one is not that cool',
+                  children: [
+                    { label: 'This one is not that cool' },
+                  ],
+                },
+              ],
+            },
+            { label: 'A cool sub-sub-folder 2' },
+          ],
+        },
+      ],
+    };
+  },
   components: {
-    HelloWorld,
+    TreeView,
+    Tree,
   },
 };
 </script>
